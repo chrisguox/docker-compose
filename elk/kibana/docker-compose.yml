@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  kibana:
+    # version need to equal with es
+    image: docker.elastic.co/kibana/kibana:7.5.0
+    container_name: kibana
+    environment:
+      SERVER_NAME: kibana-server
+      # elastic search host
+      ELASTICSEARCH_HOSTS: http://es01:9200/
+    ports:
+      - 5601:5601
+    networks:
+        - elasticsearch_elastic
+
+
+networks:
+  # elastic search network
+  elasticsearch_elastic:
+    external: true
